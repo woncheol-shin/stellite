@@ -100,8 +100,8 @@ class STELLITE_EXPORT HttpSession::SessionImpl {
 
   bool Start(HttpSessionVisitor* visitor);
   bool AddQuicHostToDirectRequestOn(const std::string& hostname, uint16_t port);
-  bool UsingQuic(bool use);
-  bool UsingHttp2(bool use);
+  bool UsingHttp2(bool use, bool enable_alternative_service);
+  bool UsingQuic(bool use, bool enable_alternative_service);
 
   int Request(HttpSession::RequestMethod method, const std::string& url,
               const std::string& raw_header, const std::string& body,
