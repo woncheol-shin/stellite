@@ -74,8 +74,8 @@ class STELLITE_EXPORT HttpSession {
 
   bool Start(HttpSessionVisitor* visitor);
   bool AddQuicHostToDirectRequestOn(const char* hostname, size_t len, uint16_t port);
-  bool UsingHttp2(bool use);
-  bool UsingQuic(bool use);
+  bool UsingHttp2(bool use, bool enable_alternative_service);
+  bool UsingQuic(bool use, bool enable_alternative_service);
 
   // caution: raw_header delimiter must \r\n
   // if chunked_upload are true body and body_len are ignored

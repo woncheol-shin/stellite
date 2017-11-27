@@ -169,21 +169,23 @@ bool HttpSession::SessionImpl::AddQuicHostToDirectRequestOn(
   return true;
 }
 
-bool HttpSession::SessionImpl::UsingQuic(bool using_quic) {
+bool HttpSession::SessionImpl::UsingQuic(bool using_quic, bool enable_quic_alternative_service_with_different_host) {
   if (context_.get()) {
     return false;
   }
 
   context_params_.using_quic = using_quic;
+  context_params_.enable_quic_alternative_service_with_different_host = enable_quic_alternative_service_with_different_host;
   return true;
 }
 
-bool HttpSession::SessionImpl::UsingHttp2(bool using_http2) {
+bool HttpSession::SessionImpl::UsingHttp2(bool using_http2, bool enable_http2_alternative_service_with_different_host) {
   if (context_.get()) {
     return false;
   }
 
   context_params_.using_http2 = using_http2;
+  context_params_.enable_http2_alternative_service_with_different_host = enable_http2_alternative_service_with_different_host;
   return true;
 }
 
@@ -278,12 +280,12 @@ bool HttpSession::AddQuicHostToDirectRequestOn(const char* hostname, size_t len,
   return impl_->AddQuicHostToDirectRequestOn(origin, port);
 }
 
-bool HttpSession::UsingHttp2(bool using_http2) {
-  return impl_->UsingHttp2(using_http2);
+bool HttpSession::UsingHttp2(bool using_http2,bool enable_http2_alternative_service_with_different_host) {
+  return impl_->UsingHttp2(using_http2, enable_http2_alternative_service_with_different_host);
 }
 
-bool HttpSession::UsingQuic(bool using_quic) {
-  return impl_->UsingQuic(using_quic);
+bool HttpSession::UsingQuic(bool using_quic, bool enable_quic_alternative_service_with_different_host) {
+  return impl_->UsingQuic(using_quic, enable_quic_alternative_service_with_different_host);
 }
 
 int HttpSession::Request(RequestMethod method,
