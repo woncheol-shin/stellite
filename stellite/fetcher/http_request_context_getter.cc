@@ -285,6 +285,10 @@ bool HttpRequestContextGetter::BuildContext(Params params) {
       context_params_.quic_disable_bidirectional_streams;
   network_session_params.quic_race_cert_verification =
       context_params_.quic_race_cert_verification;
+  network_session_params.enable_quic_alternative_service_with_different_host = 
+      context_params_.enable_quic_alternative_service_with_different_host;
+  network_session_params.enable_http2_alternative_service_with_different_host = 
+      context_params_.enable_http2_alternative_service_with_different_host;
 
   for (size_t i = 0; i < params.origins_to_force_quic_on.size(); ++i) {
     const std::string& hostname = params.origins_to_force_quic_on[i];
